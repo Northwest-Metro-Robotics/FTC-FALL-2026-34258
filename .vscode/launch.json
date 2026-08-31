@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FTC: Regular Install (USB)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "./gradlew :TeamCode:installDebug"
+    },
+    {
+      "name": "FTC: OTA Install",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "${workspaceFolder}/scripts/controlhub-install.sh ${input:controlHubIp}"
+    },
+    {
+      "name": "FTC: Debug on Control Hub",
+      "type": "java",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005,
+      "preLaunchTask": "FTC: OTA Prepare Java Debug"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "controlHubIp",
+      "type": "promptString",
+      "description": "REV Control Hub IP address",
+      "default": "192.168.43.1"
+    }
+  ]
+}

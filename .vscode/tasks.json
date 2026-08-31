@@ -1,0 +1,97 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "FTC: Build Debug APK",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": [
+        ":TeamCode:assembleDebug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "FTC: Install Debug (USB)",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": [
+        ":TeamCode:installDebug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "FTC: OTA Connect ADB",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/controlhub-connect.sh",
+      "args": [
+        "${input:controlHubIp}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "FTC: OTA Install Debug",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/controlhub-install.sh",
+      "args": [
+        "${input:controlHubIp}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "FTC: OTA Prepare Java Debug",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/controlhub-debug.sh",
+      "args": [
+        "${input:controlHubIp}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "FTC: Logcat Robot Controller",
+      "type": "shell",
+      "command": "adb",
+      "args": [
+        "-s",
+        "${input:controlHubIp}:5555",
+        "logcat",
+        "-s",
+        "RobotCore",
+        "UsbDeviceManager",
+        "EventLoopManager",
+        "FtcRobotControllerActivity",
+        "AndroidRuntime"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "controlHubIp",
+      "type": "promptString",
+      "description": "REV Control Hub IP address",
+      "default": "192.168.43.1"
+    }
+  ]
+}
