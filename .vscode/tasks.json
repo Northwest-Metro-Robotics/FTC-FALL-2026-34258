@@ -30,8 +30,14 @@
     {
       "label": "FTC: OTA Connect ADB",
       "type": "shell",
-      "command": "${workspaceFolder}/scripts/controlhub-connect.sh",
+      "command": "powershell.exe",
       "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\controlhub-connect.ps1",
+        "-ControlHubIp",
         "${input:controlHubIp}"
       ],
       "options": {
@@ -40,10 +46,16 @@
       "problemMatcher": []
     },
     {
-      "label": "FTC: OTA Install Debug",
+      "label": "FTC: OTA Connect, Build, and Install",
       "type": "shell",
-      "command": "${workspaceFolder}/scripts/controlhub-install.sh",
+      "command": "powershell.exe",
       "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\controlhub-install.ps1",
+        "-ControlHubIp",
         "${input:controlHubIp}"
       ],
       "options": {

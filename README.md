@@ -16,34 +16,44 @@ The scaffold was imported from the official `FIRST-Tech-Challenge/FtcRobotContro
 - A JDK supported by the FTC Android Studio setup
 - Android platform tools (`adb`) on your `PATH`
 
+### Windows setup
+
+From PowerShell, run the one-time bootstrap script. It installs Git for Windows,
+JDK 17, Android Studio, the Android SDK packages this project requires, writes
+the local (ignored) SDK configuration file, and compiles `TeamCode` once to
+download dependencies and validate the Gradle source set.
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\setup-windows.ps1
+```
+
+After it finishes, open `C:\code\FTC-FALL-2026-34258` (the repository root) in
+Android Studio and sync the Gradle project. Restart VS Code so the new Java and
+Android SDK environment variables are available to its terminals and tasks.
+
 ## Wireless Control Hub Workflow
 
 1. Connect your development machine to the same network as the Control Hub.
 2. Enable wireless ADB on the hub once over USB if it is not already enabled.
-3. Connect to the hub:
+3. In VS Code, choose **FTC: OTA Connect, Build, and Install** in Run and
+   Debug, then press `F5`. Enter the hub IP address when prompted.
 
-   ```bash
-   ./scripts/controlhub-connect.sh 192.168.43.1
+   The launcher connects to the hub, builds the debug APK, and installs it
+   specifically on that hub. It does not require Git Bash or a USB device.
+
+   To run the same workflow from PowerShell:
+
+   ```powershell
+   .\scripts\controlhub-install.ps1 -ControlHubIp 192.168.43.1
    ```
-
-4. Build and install the Robot Controller app over the air:
-
-   ```bash
-   ./scripts/controlhub-install.sh 192.168.43.1
-   ```
-
-The install script will:
-
-- connect `adb` to the Control Hub
-- wait for the device to come online
-- run `./gradlew :TeamCode:installDebug`
 
 ## VS Code Run And Debug
 
 This workspace includes VS Code profiles in `.vscode/`:
 
 - `FTC: Regular Install (USB)`: builds and installs the debug app to a USB-connected device
-- `FTC: OTA Install`: builds and installs the debug app over Wi-Fi to the Control Hub
+- `FTC: OTA Connect, Build, and Install`: connects, builds, and installs the debug app over Wi-Fi to the Control Hub
 - `FTC: Debug on Control Hub`: launches the Robot Controller app in Android debug mode on the Control Hub, forwards local port `5005`, and attaches the VS Code Java debugger
 
 The first time you open the repo in VS Code, install the recommended extensions:

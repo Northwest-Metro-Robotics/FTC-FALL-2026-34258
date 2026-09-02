@@ -8,10 +8,10 @@
       "command": "./gradlew :TeamCode:installDebug"
     },
     {
-      "name": "FTC: OTA Install",
+      "name": "FTC: OTA Connect, Build, and Install",
       "type": "node-terminal",
       "request": "launch",
-      "command": "${workspaceFolder}/scripts/controlhub-install.sh ${input:controlHubIp}"
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}\\scripts\\controlhub-install.ps1\" -ControlHubIp \"${input:controlHubIp}\""
     },
     {
       "name": "FTC: Debug on Control Hub",
