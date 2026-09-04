@@ -10,27 +10,44 @@ The scaffold was imported from the official `FIRST-Tech-Challenge/FtcRobotContro
 - `TeamCode/`: team-owned robot code
 - `scripts/`: helper scripts for Control Hub wireless deployment
 
-## Requirements
+## Windows Setup (First Time)
 
-- Android Studio Ladybug (2024.2) or newer
-- A JDK supported by the FTC Android Studio setup
-- Android platform tools (`adb`) on your `PATH`
+These steps prepare a new Windows computer for FTC development. You only need
+to run the setup task once per computer.
 
-### Windows setup
+1. Install [Visual Studio Code](https://code.visualstudio.com/) and open it.
+2. Open this project folder:
+   - Select **File** > **Open Folder...**.
+   - Select the folder that contains this `README.md` file, such as
+     `C:\code\FTC-FALL-2026-34258`.
+   - Select **Select Folder**. If VS Code asks whether you trust the authors,
+     select **Yes, I trust the authors** for a copy of this team repository.
+3. Install the suggested VS Code extensions when prompted. If no prompt
+   appears, select the **Extensions** icon in the left sidebar, search for, and
+   install:
+   - `Extension Pack for Java`
+   - `Gradle for Java`
+4. Run the setup task:
+   - In the top menu, select **Terminal** > **Run Task...**.
+   - Select **FTC: Set Up Windows Development Environment**.
+   - Watch the terminal panel at the bottom of VS Code until it reports
+     `Setup complete.` This may take a while because it downloads developer
+     tools and Android SDK components.
+5. Restart VS Code after setup completes. This makes the new Java and Android
+   SDK settings available to VS Code.
 
-From PowerShell, run the one-time bootstrap script. It installs Git for Windows,
-JDK 17, Android Studio, the Android SDK packages this project requires, writes
-the local (ignored) SDK configuration file, and compiles `TeamCode` once to
-download dependencies and validate the Gradle source set.
+The setup task installs Git for Windows, JDK 17, Android Studio, and the
+required Android SDK packages. It also configures this local checkout and
+builds `TeamCode` once to download the Gradle dependencies. You do not need to
+open PowerShell or enter commands manually.
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\scripts\setup-windows.ps1
-```
+If Windows asks for permission to install software, approve the prompt. The
+task requires `winget` (included with current versions of Windows 10 and 11).
+If it says that `winget` is missing, install or update **App Installer** from
+the Microsoft Store, then run the task again.
 
-After it finishes, open `C:\code\FTC-FALL-2026-34258` (the repository root) in
-Android Studio and sync the Gradle project. Restart VS Code so the new Java and
-Android SDK environment variables are available to its terminals and tasks.
+After setup, you can open the same project folder in Android Studio and allow
+it to sync the Gradle project if you prefer to use Android Studio.
 
 ## Wireless Control Hub Workflow
 
