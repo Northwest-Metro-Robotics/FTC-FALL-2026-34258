@@ -34,6 +34,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.teamcode.lib.Models.Shooter;
+
+
 import com.qualcomm.robotcore.hardware.CRServo;
 /*
  * This file contains an example of a Linear "OpMode".
@@ -73,8 +76,11 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
     private DcMotor backLeftDrive = null;
     private DcMotor frontRightDrive = null;
     private DcMotor backRightDrive = null;
+
+    private Shooter shooter =null;
+
     private DcMotor intake = null;
-    private CRServo intakeServo = null; 
+    private CRServo intakeServo = null;
     @Override
     public void runOpMode() {
 
@@ -84,8 +90,6 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "DLB");
         frontRightDrive = hardwareMap.get(DcMotor.class, "DRF");
         backRightDrive = hardwareMap.get(DcMotor.class, "DRB");
-        intakeServo = hardwareMap.get(CRServo.class, "flower");
-        intake = hardwareMap.get(DcMotor.class, "intake");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -138,19 +142,6 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
                 backRightPower  /= max;
             }
 
-            if (gamepad1.right_bumper) {
-                intake.setPower(-1.0);
-                intakeServo.setPower(-1.0);      // full speed forward
-            }
-            else if (gamepad2.left_bumper) {
-                intake.setPower(1.0);
-                intakeServo.setPower(1.0);     // full speed backward
-            }
-            else {
-                intake.setPower(0.0);
-                intakeServo.setPower(0.0);      // stop
-            }
-
             // This is test code:
             //
             // Uncomment the following code to test your motor directions.
@@ -180,13 +171,12 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
             telemetry.update();
 
-            if (gamepad2.right_bumper) {
-                intakeServo.setPower(1.0);      // full speed forward
-            } else if (gamepad2.left_bumper) {
-                intakeServo.setPower(-1.0);     // full speed backward
-            } else {
-                intakeServo.setPower(0.0);      // stop
-            } 
+            shooter = new Shooter()
 
+            if (gamepad.left_bumper){
+                shooter.On();
+            } else {
+                shooter.Off();
+            }
         }
     }}
