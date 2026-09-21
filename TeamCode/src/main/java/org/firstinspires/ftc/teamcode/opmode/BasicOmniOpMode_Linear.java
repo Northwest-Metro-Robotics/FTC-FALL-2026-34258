@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.lib.Models.Shooter;
 
 
+import com.qualcomm.robotcore.hardware.CRServo;
 /*
  * This file contains an example of a Linear "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -78,6 +79,8 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
 
     private Shooter shooter =null;
 
+    private DcMotor intake = null;
+    private CRServo intakeServo = null;
     @Override
     public void runOpMode() {
 
