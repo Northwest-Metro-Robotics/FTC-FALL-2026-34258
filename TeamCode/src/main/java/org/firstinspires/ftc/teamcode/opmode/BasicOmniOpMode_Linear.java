@@ -76,7 +76,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
     private DcMotor frontRightDrive = null;
     private DcMotor backRightDrive = null;
     private DcMotor intake = null;
-    private CRServo intakeServo = null; 
+   // private CRServo intakeServo = null; 
     private Shooter shooter = null;
 
     @Override
@@ -88,7 +88,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "DLB");
         frontRightDrive = hardwareMap.get(DcMotor.class, "DRF");
         backRightDrive = hardwareMap.get(DcMotor.class, "DRB");
-        intakeServo = hardwareMap.get(CRServo.class, "flower");
+       // intakeServo = hardwareMap.get(CRServo.class, "flower");
         intake = hardwareMap.get(DcMotor.class, "intake");
         shooter = new Shooter(hardwareMap,telemetry);
 
@@ -145,15 +145,15 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
 
             if (gamepad1.right_bumper) {
                 intake.setPower(-1.0);
-                intakeServo.setPower(-1.0);      // full speed forward
+               // intakeServo.setPower(-1.0);      // full speed forward
             }
             else if (gamepad1.left_bumper) {
                 intake.setPower(1.0);
-                intakeServo.setPower(1.0);     // full speed backward
+                //intakeServo.setPower(1.0);     // full speed backward
             }
             else {
                 intake.setPower(0.0);
-                intakeServo.setPower(0.0);      // stop
+              //  intakeServo.setPower(0.0);      // stop
             }
 
             // This is test code:
